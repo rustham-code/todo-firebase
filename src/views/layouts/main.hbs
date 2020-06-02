@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>firebase task todo</title>
+    {{!-- BOOTSTRAP CDN --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
+</head>
+<body>
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h1 style="text-align: center;">Firebase Tasks todo</h1>
+        </div>
+        <div class="card-body">
+            {{#if task}}
+            <ul class="list-group">
+                {{#each task}}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <input type="checkbox"{{isComplete}} onchange="change-task/{{@key}}"/>
+                    {{name}}
+                    <a href="/update-task/{{@key}}" class="btn btn-warning">update</a>
+                    <a href="/delete-task/{{@key}}" class="btn btn-danger">Delete</a>
+                </li>
+                {{/each}}
+            </ul>
+            {{else}}
+                <p style="text-align: center; font-size:20px;"><b>No Tasks yet</b></p>
+            {{/if}}
+        </div>
+        <div class="card-footer">
+            <form action="/new-task" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="name" class="form-control" autofocus>
+                </div>
+                <button class="btn btn-primary btn-block">
+                    Add task
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</body>
+
+</html>
+<style>
+    /* esto es el fondito de patrones */
+body {
+  background: 
+  linear-gradient(135deg, black 25%, transparent 25%) -50px 0,
+  linear-gradient(225deg, black 25%, transparent 25%) -50px 0,
+  linear-gradient(315deg, black 25%, transparent 25%),
+  linear-gradient(45deg, black 25%, transparent 25%);	
+  background-size: 2em 2em;
+  background-color: #232323;
+}
+</style>
